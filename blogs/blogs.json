@@ -1,0 +1,14 @@
+{
+  "repo": "universitat-hamburg",
+  "feeds": [
+    {
+      "source": "https://www.uni-hamburg.de/en/newsroom.html",
+      "feed_url": "https://www.uni-hamburg.de/en/newsroom.html",
+      "title": "Universität Hamburg Newsroom",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-06-03T00:00:00Z"
+}

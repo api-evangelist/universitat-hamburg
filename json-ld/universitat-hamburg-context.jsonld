@@ -1,0 +1,52 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "uhh": "https://www.uni-hamburg.de/ns#",
+    "oai": "http://www.openarchives.org/OAI/2.0/",
+    "dc": "http://purl.org/dc/elements/1.1/",
+    "CollegeOrUniversity": "https://schema.org/CollegeOrUniversity",
+    "Dataset": "https://schema.org/Dataset",
+    "WebAPI": "https://schema.org/WebAPI",
+    "name": "https://schema.org/name",
+    "url": "https://schema.org/url",
+    "description": "https://schema.org/description",
+    "identifier": "https://schema.org/identifier",
+    "sameAs": "https://schema.org/sameAs",
+    "logo": "https://schema.org/logo",
+    "documentation": "https://schema.org/documentation",
+    "provider": "https://schema.org/provider",
+    "endpointUrl": "https://schema.org/EntryPoint",
+    "ediss": {
+      "@id": "uhh:edissOaiPmh",
+      "@type": "WebAPI"
+    },
+    "openAccessPortal": {
+      "@id": "uhh:openAccessPortal",
+      "@type": "WebAPI"
+    },
+    "repositoryName": "dc:source",
+    "metadataPrefix": "oai:metadataPrefix",
+    "title": "dc:title",
+    "creator": "dc:creator",
+    "subject": "dc:subject",
+    "date": "dc:date",
+    "publisher": "dc:publisher",
+    "type": "dc:type"
+  },
+  "@type": "CollegeOrUniversity",
+  "@id": "https://www.uni-hamburg.de/",
+  "name": "Universität Hamburg",
+  "url": "https://www.uni-hamburg.de/en.html",
+  "description": "Public research university in Hamburg, Germany. Public machine-readable interfaces include an OAI-PMH metadata-harvesting endpoint for the DSpace-based electronic dissertations repository operated by the Staats- und Universitätsbibliothek Hamburg.",
+  "logo": "https://www.uni-hamburg.de/typo3conf/ext/sde_template/Resources/Public/Images/UHH_Logo.svg",
+  "sameAs": [
+    "https://github.com/Uni-Hamburg",
+    "https://www.linkedin.com/school/universitaet-hamburg/",
+    "https://gitlab.rrz.uni-hamburg.de/"
+  ],
+  "provider": {
+    "@type": "Organization",
+    "name": "Staats- und Universitätsbibliothek Hamburg (SUB)",
+    "url": "https://www.sub.uni-hamburg.de/"
+  }
+}
