@@ -1,0 +1,44 @@
+---
+name: Universität Hamburg
+description: Universität Hamburg public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/universitat-hamburg/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 2
+    summary: >-
+      Universität Hamburg has no single branded developer portal or public REST
+      API catalog. The verified machine-readable footprint is library/open-access
+      infrastructure: a live DSpace OAI-PMH endpoint for the institutional
+      dissertation repository (ediss.sub.hamburg) and the Open-Access-Portal. An
+      official Universität Hamburg GitHub organization exists (3 public repos) and
+      an RRZ-hosted GitLab is available. Campus systems (STiNE) and Shibboleth/SAML
+      SSO are gated and not documented as public APIs. No endpoints or
+      properties were fabricated; only URLs probed live or confirmed via authoritative
+      sources are listed below.
+    endpoints:
+      - url: https://ediss.sub.uni-hamburg.de/oai/request?verb=Identify
+        status: 200
+        note: Live OAI-PMH 2.0 Identify response (DSpace XOAI); repositoryName ediss.sub.hamburg.
+      - url: https://ediss.sub.uni-hamburg.de/
+        status: 200
+        note: DSpace institutional repository front end for e-dissertations.
+      - url: https://www.openaccess.uni-hamburg.de/en.html
+        status: 200
+        note: Open Access Portal; discovery hub, no documented public REST API.
+      - url: https://www.uni-hamburg.de/en.html
+        status: 200
+        note: Official university website.
+      - url: https://github.com/Uni-Hamburg
+        status: 200
+        note: Official Universität Hamburg GitHub org, 3 public repositories.
+      - url: https://www.stine.uni-hamburg.de/
+        status: 200
+        note: STiNE campus-management system (CampusNet); gated, no public API.
+      - url: https://gitlab.rrz.uni-hamburg.de/
+        status: 200
+        note: RRZ-hosted GitLab instance for research/teaching; access gated.
+      - url: https://www.linkedin.com/school/universitaet-hamburg/
+        status: 999
+        note: LinkedIn school page; 999 is LinkedIn anti-bot, URL valid in browser.

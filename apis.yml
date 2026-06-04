@@ -1,0 +1,83 @@
+---
+aid: universitat-hamburg
+name: Universität Hamburg
+description: >-
+  Universität Hamburg is a public research university in Hamburg, Germany,
+  ranked #191 in the QS World University Rankings 2025. Its public developer and
+  machine-readable footprint is concentrated in library and open-access
+  infrastructure operated by the Staats- und Universitätsbibliothek (SUB) and the
+  Regionales Rechenzentrum (RRZ), rather than a single branded developer portal.
+  Confirmed public interfaces include a DSpace-based institutional dissertation
+  repository (ediss.sub.hamburg) exposing an OAI-PMH metadata endpoint, and an
+  official Universität Hamburg open-source presence on GitHub. Campus systems such
+  as the STiNE campus-management platform and Shibboleth/SAML single sign-on are
+  gated and not openly documented as public APIs.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/universitat-hamburg/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Germany
+  - Open Access
+  - Library
+  - Metadata
+  - OAI-PMH
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: universitat-hamburg:ediss-oai
+    name: E-Dissertationen (ediss.sub.hamburg) OAI-PMH
+    description: >-
+      OAI-PMH metadata-harvesting interface for the DSpace-based institutional
+      repository of electronic dissertations and habilitations of Universität
+      Hamburg, operated by the Staats- und Universitätsbibliothek Hamburg. The
+      endpoint supports the standard OAI-PMH 2.0 verbs (Identify, ListRecords,
+      ListMetadataFormats, etc.) and was verified live returning Dublin Core
+      metadata.
+    humanURL: https://www.sub.uni-hamburg.de/service/publizieren/dissertationen/e-dissertationen-der-uhh.html
+    baseURL: https://ediss.sub.uni-hamburg.de/oai/request
+    tags: [ Library, Repository, OAI-PMH, Metadata, DSpace, Open Access ]
+    properties:
+      - type: Documentation
+        url: https://www.sub.uni-hamburg.de/service/publizieren/dissertationen/e-dissertationen-der-uhh.html
+  - aid: universitat-hamburg:open-access-portal
+    name: Open-Access-Portal Universität Hamburg
+    description: >-
+      Open Access discovery portal aggregating freely available publications,
+      research data, teaching materials, and scientific collections of Universität
+      Hamburg. Underlying IT services (repositories and metadata exports such as
+      OAI) are operated by the Regionales Rechenzentrum (RRZ); no single public,
+      documented REST API is published, so this entry indexes the human-facing
+      portal and its harvestable metadata infrastructure.
+    humanURL: https://www.openaccess.uni-hamburg.de/en.html
+    tags: [ Open Access, Repository, Metadata, Research Data ]
+    properties:
+      - type: Documentation
+        url: https://www.openaccess.uni-hamburg.de/en.html
+common:
+  - type: Website
+    url: https://www.uni-hamburg.de/en.html
+  - type: GitHub
+    url: https://github.com/Uni-Hamburg
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/universitaet-hamburg/
+  - type: SourceCode
+    url: https://gitlab.rrz.uni-hamburg.de/
+  - type: Authentication
+    url: https://www.rrz.uni-hamburg.de/services/weitere/authentifizierung/shibboleth/configure.html
+  - type: Plans
+    url: plans/universitat-hamburg-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/universitat-hamburg-rate-limits.yml
+  - type: FinOps
+    url: finops/universitat-hamburg-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
