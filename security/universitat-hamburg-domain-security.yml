@@ -1,0 +1,27 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.uni-hamburg.de
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  5 02:56:55 2026 GMT
+  hsts: false
+- host: www.sub.uni-hamburg.de
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  8 07:57:40 2026 GMT
+  hsts: null
+- host: ediss.sub.uni-hamburg.de
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 23 06:23:43 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: uni-hamburg.de
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
