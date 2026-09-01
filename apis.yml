@@ -1,41 +1,48 @@
 ---
 aid: universitat-hamburg
 name: Universität Hamburg
+x-type: university
+x-category: Public Research University
 description: >-
-  Universität Hamburg is a public research university in Hamburg, Germany,
-  ranked #191 in the QS World University Rankings 2025. Its public developer and
-  machine-readable footprint is concentrated in library and open-access
-  infrastructure operated by the Staats- und Universitätsbibliothek (SUB) and the
-  Regionales Rechenzentrum (RRZ), rather than a single branded developer portal.
-  Confirmed public interfaces include a DSpace-based institutional dissertation
-  repository (ediss.sub.hamburg) exposing an OAI-PMH metadata endpoint, and an
-  official Universität Hamburg open-source presence on GitHub. Campus systems such
-  as the STiNE campus-management platform and Shibboleth/SAML single sign-on are
-  gated and not openly documented as public APIs.
+  Universität Hamburg is a public research university in Hamburg, Germany, and one
+  of the largest in the country. It operates no central developer portal, publishes
+  no OpenAPI of its own, and has no course, registrar, campus-life or open-data API
+  — the STiNE campus-management system and the Katalogplus discovery service are
+  both behind an authorization wall. What it does operate, on its own hosts and
+  with its own engineering, is scholarly-communication and identity infrastructure:
+  a research-data repository (ZFDM, www.fdr.uni-hamburg.de) whose read API returns
+  unauthenticated JSON with CORS and rate-limit headers; five live OAI-PMH 2.0
+  repositories across dissertations, research data, the university press, its
+  journal server and its digitized collections; and its own Shibboleth SAML 2.0
+  Identity Provider, whose metadata is published at login.uni-hamburg.de and
+  registered in the DFN-AAI federation and thereby in eduGAIN. It is a DataCite
+  registrant (prefix 10.25592) and its library is a Crossref member (prefix
+  10.15460). Almost all of this is library-and-computing-centre infrastructure
+  rather than a product; none of it is documented for third-party developers.
 type: Index
 deliveryModel:
   model: saas
   open_source: false
-  commercial: true
-  callable_host: false
-  label: Hosted service · you call their endpoint
-  confidence: medium
+  commercial: false
+  callable_host: true
+  label: Institution-operated endpoints · you call their host
+  confidence: high
   source:
-  - pricing
-  generated: '2026-08-28'
-  method: derived
+  - https://www.fdr.uni-hamburg.de/api/records/?size=1
+  generated: '2026-09-01'
+  method: probed
 accessModel:
   pricing: free
-  onboarding: unknown
+  onboarding: none
   trial: false
-  try_now: false
-  public: false
-  label: Free
-  confidence: medium
+  try_now: true
+  public: true
+  label: Free and open, no registration
+  confidence: high
   source:
-  - plans
-  generated: '2026-07-22'
-  method: derived
+  - https://www.fdr.uni-hamburg.de/api/records/?size=1
+  generated: '2026-09-01'
+  method: probed
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/universitat-hamburg.png
@@ -45,56 +52,243 @@ tags:
   - Higher Education
   - University
   - Germany
-  - Open Access
+  - Research Data
+  - Research Repository
   - Library
+  - Open Access
   - Metadata
   - OAI-PMH
+  - Identity Federation
+  - DataCite
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-09-01'
 specificationVersion: '0.23'
 apis:
+  - aid: universitat-hamburg:zfdm-repository-api
+    name: ZFDM Research Data Repository API
+    x-operator: institution
+    description: >-
+      Read API of the ZFDM Repository (Forschungsdatenrepositorium), operated by
+      Universität Hamburg's Zentrum für nachhaltiges Forschungsdatenmanagement on
+      the institution's own host. Returns records, communities, licenses and file
+      buckets as unauthenticated JSON with Access-Control-Allow-Origin *, RFC 8288
+      Link pagination and X-RateLimit-* headers (limit 5000). Deposit paths return
+      401. Records carry DataCite DOIs under the institutional prefix 10.25592 and
+      ORCID iDs on creators. The repository runs Invenio, so the contract SHAPE
+      originates upstream; the deployment, host, identifiers and data are the
+      institution's, and the OpenAPI below was derived by API Evangelist from live
+      probes because the institution publishes none.
+    humanURL: https://www.fdr.uni-hamburg.de/
+    baseURL: https://www.fdr.uni-hamburg.de/api
+    tags: [ Research Data, Repository, DataCite, DOI, Open Access, Invenio ]
+    properties:
+      - type: OpenAPI
+        url: openapi/universitat-hamburg-zfdm-repository-openapi.yml
+      - type: x-openapi-original
+        url: openapi/_original/universitat-hamburg-zfdm-repository-openapi.yml
+      - type: Authentication
+        url: authentication/universitat-hamburg-authentication.yml
+      - type: Errors
+        url: errors/universitat-hamburg-errors.yml
+      - type: Documentation
+        url: https://www.fdr.uni-hamburg.de/
+  - aid: universitat-hamburg:zfdm-oai
+    name: ZFDM Repository OAI-PMH
+    x-operator: institution
+    description: >-
+      OAI-PMH 2.0 harvesting interface of the ZFDM Research Data Repository.
+      Verified live 2026-09-01: repositoryName "ZFDM Repository", adminEmail
+      repository.fdm@uni-hamburg.de, earliest datestamp 2019-04-03. Offers the
+      datacite, datacite3, oai_datacite, oai_datacite3, marcxml, marc21 and oai_dc
+      metadata prefixes.
+    humanURL: https://www.fdr.uni-hamburg.de/
+    baseURL: https://www.fdr.uni-hamburg.de/oai2d
+    tags: [ OAI-PMH, Metadata, Research Data, DataCite, Harvesting ]
+    properties:
+      - type: APIReference
+        url: https://www.fdr.uni-hamburg.de/oai2d?verb=Identify
+      - type: Example
+        url: examples/universitat-hamburg-zfdm-oai-identify-example.xml
+    x-pointer-note: >-
+      The bare OAI-PMH base URL returns HTTP 422 because the protocol requires a
+      `verb` parameter; that is correct protocol behaviour, not a dead endpoint.
+      The APIReference pointer above carries the verb and returns 200.
   - aid: universitat-hamburg:ediss-oai
     name: E-Dissertationen (ediss.sub.hamburg) OAI-PMH
+    x-operator: institution
     description: >-
-      OAI-PMH metadata-harvesting interface for the DSpace-based institutional
+      OAI-PMH 2.0 metadata-harvesting interface for the DSpace-based institutional
       repository of electronic dissertations and habilitations of Universität
-      Hamburg, operated by the Staats- und Universitätsbibliothek Hamburg. The
-      endpoint supports the standard OAI-PMH 2.0 verbs (Identify, ListRecords,
-      ListMetadataFormats, etc.) and was verified live returning Dublin Core
-      metadata.
+      Hamburg, operated by the Staats- und Universitätsbibliothek Hamburg. Verified
+      live 2026-09-01 returning a valid Identify response and nine metadata
+      prefixes including oai_datacite, xMetaDissPlus, epicur, marc and ore. The
+      repository exposes no REST API — /rest and /server/api both return 404.
     humanURL: https://www.sub.uni-hamburg.de/service/publizieren/dissertationen/e-dissertationen-der-uhh.html
     baseURL: https://ediss.sub.uni-hamburg.de/oai/request
     tags: [ Library, Repository, OAI-PMH, Metadata, DSpace, Open Access ]
     properties:
       - type: Documentation
         url: https://www.sub.uni-hamburg.de/service/publizieren/dissertationen/e-dissertationen-der-uhh.html
+  - aid: universitat-hamburg:hup-oai
+    name: Hamburg University Press OAI-PMH
+    x-operator: institution
+    description: >-
+      OAI-PMH 2.0 interface of Hamburg University Press, the open-access publishing
+      house of the Staats- und Universitätsbibliothek Hamburg, running on OJS.
+      Verified live 2026-09-01 with 15 sets and the oai_dc, xMetaDissPlus and
+      epicur metadata prefixes. The OJS REST API (/api/v1/) is not exposed —
+      it returns HTTP 500 unauthenticated.
+    humanURL: https://hup.sub.uni-hamburg.de/
+    baseURL: https://hup.sub.uni-hamburg.de/index.php/index/oai
+    tags: [ OAI-PMH, Open Access, Publishing, Metadata, OJS ]
+  - aid: universitat-hamburg:journals-oai
+    name: HUP Journal Server OAI-PMH
+    x-operator: institution
+    description: >-
+      OAI-PMH 2.0 interface of the journal server of Hamburg University Press.
+      Verified live 2026-09-01: repositoryName "Journal Server of Hamburg
+      University Press - Publishing House of the State and University Library
+      Hamburg Carl von Ossietzky", earliest datestamp 2014-02-10, 100+ sets.
+    humanURL: https://journals.sub.uni-hamburg.de/
+    baseURL: https://journals.sub.uni-hamburg.de/index.php/index/oai
+    tags: [ OAI-PMH, Open Access, Journals, Metadata, OJS ]
+  - aid: universitat-hamburg:digitalisate-oai
+    name: Digitized Collections (Kitodo.Presentation) OAI-PMH
+    x-operator: institution
+    description: >-
+      OAI-PMH 2.0 interface over the digitized collections of the Staats- und
+      Universitätsbibliothek Hamburg, running Kitodo.Presentation. Verified live
+      2026-09-01 serving real PPN identifiers with the oai_dc, epicur and mets
+      metadata prefixes. Caveat recorded rather than smoothed over: the Identify
+      block still carries the software's default adminEmail (unknown@example.org),
+      so the endpoint is live but not fully configured.
+    humanURL: https://digitalisate.sub.uni-hamburg.de/
+    baseURL: https://digitalisate.sub.uni-hamburg.de/oai
+    tags: [ OAI-PMH, Digitization, METS, Library, Metadata, Kitodo ]
+  - aid: universitat-hamburg:saml-idp
+    name: Universität Hamburg Shibboleth SAML 2.0 Identity Provider Metadata
+    x-operator: institution
+    description: >-
+      The institution's own SAML 2.0 Identity Provider metadata, served from its
+      own host. entityID https://login.uni-hamburg.de/idp/shibboleth,
+      mdui:DisplayName "Universität Hamburg (UHH)", three SingleSignOnService
+      endpoints across HTTP-POST, HTTP-POST-SimpleSign, HTTP-Redirect and SOAP
+      bindings. Operated by the Regionales Rechenzentrum (RRZ). This is the
+      institution's single strongest machine-readable, institution-engineered
+      surface — and the class the university cohort was most completely missing.
+    humanURL: https://www.rrz.uni-hamburg.de/services/weitere/authentifizierung/shibboleth/configure.html
+    baseURL: https://login.uni-hamburg.de/idp/shibboleth
+    tags: [ Identity Federation, SAML, Shibboleth, Single Sign-On, Metadata ]
+    properties:
+      - type: Example
+        url: examples/universitat-hamburg-saml-idp-metadata-example.xml
+      - type: Documentation
+        url: https://www.rrz.uni-hamburg.de/services/weitere/authentifizierung/shibboleth/configure.html
+  - aid: universitat-hamburg:dfn-aai
+    name: DFN-AAI / eduGAIN Federation Membership
+    x-operator: federation
+    description: >-
+      Universität Hamburg's IdP is registered in DFN-AAI, the German national
+      identity federation and eduGAIN member, and its metadata is resolvable
+      through the DFN-AAI MDQ service. registrationAuthority
+      https://www.aai.dfn.de. The entity asserts support for the REFEDS Research &
+      Scholarship entity category and the GÉANT Data Protection Code of Conduct
+      v1. A federation is shared by definition; the IdP behind this entry is the
+      institution's own, which is why the relationship is recorded rather than
+      dropped as a shared host.
+    humanURL: https://www.aai.dfn.de/
+    baseURL: https://mdq.aai.dfn.de/entities/https%3A%2F%2Flogin.uni-hamburg.de%2Fidp%2Fshibboleth
+    tags: [ Identity Federation, SAML, eduGAIN, DFN-AAI, Metadata ]
+  - aid: universitat-hamburg:datacite-registrant
+    name: DataCite Registrant (prefix 10.25592)
+    x-operator: registry
+    description: >-
+      Universität Hamburg is a DataCite registrant. DOI prefix 10.25592 resolves to
+      DataCite client tib.fdmuh, named "Universität Hamburg", registered 2017 and
+      used by the ZFDM Repository. The university library is a second registrant,
+      client zbw.subhh, "Staats- und Universitätsbibliothek Hamburg Carl von
+      Ossietzky", registered 2016. The contract at api.datacite.org is DataCite's,
+      not the institution's; what is recorded here is the membership, which is a
+      fact about Universität Hamburg.
+    humanURL: https://www.fdr.uni-hamburg.de/
+    baseURL: https://api.datacite.org/clients/tib.fdmuh
+    x-pointer-note: >-
+      The DataCite Commons page for this registrant
+      (https://commons.datacite.org/repositories/tib.fdmuh) rate-limits automated
+      probes with HTTP 429 and is therefore not emitted as a pointer; the
+      registrant record itself is verified through the DataCite API URL above.
+    tags: [ DataCite, DOI, Registry, Persistent Identifiers, Research Data ]
+  - aid: universitat-hamburg:crossref-member
+    name: Crossref Member 25426 (prefix 10.15460)
+    x-operator: registry
+    description: >-
+      The Staats- und Universitätsbibliothek Hamburg Carl von Ossietzky — the
+      university library and publisher of Hamburg University Press — is Crossref
+      member 25426, depositing under prefix 10.15460, with 3,954 DOIs on record as
+      of 2026-09-01. Membership recorded; the Crossref API contract is Crossref's.
+    humanURL: https://www.crossref.org/
+    baseURL: https://api.crossref.org/members/25426
+    tags: [ Crossref, DOI, Registry, Persistent Identifiers, Publishing ]
+  - aid: universitat-hamburg:ror
+    name: ROR Registration (00g30e956)
+    x-operator: registry
+    description: >-
+      Universität Hamburg is registered in the Research Organization Registry as
+      https://ror.org/00g30e956. Membership recorded; the ROR API is ROR's.
+    humanURL: https://ror.org/00g30e956
+    baseURL: https://api.ror.org/v2/organizations/00g30e956
+    tags: [ ROR, Registry, Persistent Identifiers, Organization Identifier ]
   - aid: universitat-hamburg:open-access-portal
     name: Open-Access-Portal Universität Hamburg
+    x-operator: institution
     description: >-
       Open Access discovery portal aggregating freely available publications,
-      research data, teaching materials, and scientific collections of Universität
-      Hamburg. Underlying IT services (repositories and metadata exports such as
-      OAI) are operated by the Regionales Rechenzentrum (RRZ); no single public,
-      documented REST API is published, so this entry indexes the human-facing
-      portal and its harvestable metadata infrastructure.
+      research data, teaching materials and scientific collections of Universität
+      Hamburg. Human-facing only — no documented REST API. Indexed here because it
+      is the institution's own front door to the harvestable metadata
+      infrastructure catalogued above.
     humanURL: https://www.openaccess.uni-hamburg.de/en.html
     tags: [ Open Access, Repository, Metadata, Research Data ]
     properties:
       - type: Documentation
         url: https://www.openaccess.uni-hamburg.de/en.html
 common:
-  - type: DomainSecurity
-    url: security/universitat-hamburg-domain-security.yml
   - type: Website
     url: https://www.uni-hamburg.de/en.html
-  - type: GitHub
+  - type: Blog
+    url: https://www.uni-hamburg.de/en/newsroom.html
+  - type: TermsOfService
+    url: https://www.uni-hamburg.de/en/impressum.html
+  - type: PrivacyPolicy
+    url: https://www.uni-hamburg.de/en/datenschutz.html
+  - type: Support
+    url: https://www.uni-hamburg.de/en/uhh/kontakt.html
+  - type: GitHubOrganization
     url: https://github.com/Uni-Hamburg
-  - type: LinkedIn
-    url: https://www.linkedin.com/school/universitaet-hamburg/
+  - type: SourceCode
+    url: https://github.com/subhh
   - type: SourceCode
     url: https://gitlab.rrz.uni-hamburg.de/
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/universitaet-hamburg/
+  - type: ResearchRepository
+    url: https://www.fdr.uni-hamburg.de/
+  - type: LibraryCatalog
+    url: https://kataloge.uni-hamburg.de/
+  - type: CourseCatalog
+    url: https://www.stine.uni-hamburg.de/
+  - type: IdentityFederation
+    url: https://login.uni-hamburg.de/idp/shibboleth
+  - type: ResearchComputing
+    url: https://www.rrz.uni-hamburg.de/en/services/hpc.html
+  - type: AIPolicy
+    url: https://www.uni-hamburg.de/lehre-navi/lehrende/orientierungsrahmen-gki
   - type: Authentication
     url: https://www.rrz.uni-hamburg.de/services/weitere/authentifizierung/shibboleth/configure.html
+  - type: Conformance
+    url: conformance/universitat-hamburg-conformance.yml
+  - type: DomainSecurity
+    url: security/universitat-hamburg-domain-security.yml
   - type: Plans
     url: plans/universitat-hamburg-plans-pricing.yml
   - type: RateLimits
@@ -103,6 +297,79 @@ common:
     url: finops/universitat-hamburg-finops.yml
   - type: Review
     url: review.yml
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Re-profiled 2026-09-01 under the university pipeline. Eleven surfaces settled
+    on the operator axis: eight institution-operated, one federation, three
+    registry (DataCite counted once across two registrant clients). The
+    substantive find is that Universität Hamburg does operate real
+    institution-engineered machine-readable surfaces — a live unauthenticated
+    JSON research-data API, five OAI-PMH 2.0 repositories, and its own Shibboleth
+    SAML 2.0 IdP registered in DFN-AAI/eduGAIN — none of which were catalogued in
+    the June 2026 profile, which held only two entries. No vendor contract was
+    saved and none was found in the repo to remove: the audit's verdict counts
+    were {"institution": 2} with no tenant, hostless, shared-contract or misbased
+    findings. What is genuinely absent is a developer-facing footprint: no
+    developer portal, no institution-published OpenAPI, no /llms.txt, no
+    /.well-known/security.txt, no OAuth server, no course or open-data API. Two
+    plausible surfaces were probed and REJECTED as dead rather than counted:
+    katalogplus.sub.uni-hamburg.de returns an identical 1,989-byte "SUBHHCore
+    Authorization" page on every path including /api/v1/, and
+    kataloge.uni-hamburg.de returns its cookie-consent shell for /api/v1/search
+    and /OAI/Server alike. One surface was rejected as another institution's: the
+    OGC API - Features service at api.hamburg.de belongs to the Freie und
+    Hansestadt Hamburg's Urban Data Platform, not to the university, and is not
+    recorded here.
+  evidence:
+    - url: https://www.fdr.uni-hamburg.de/api/records/?size=1&sort=mostrecent
+      status: 200
+    - url: https://www.fdr.uni-hamburg.de/api/records/999999999
+      status: 404
+    - url: https://www.fdr.uni-hamburg.de/api/deposit/depositions
+      status: 401
+    - url: https://www.fdr.uni-hamburg.de/oai2d?verb=Identify
+      status: 200
+    - url: https://ediss.sub.uni-hamburg.de/oai/request?verb=Identify
+      status: 200
+    - url: https://hup.sub.uni-hamburg.de/index.php/index/oai?verb=Identify
+      status: 200
+    - url: https://journals.sub.uni-hamburg.de/index.php/index/oai?verb=Identify
+      status: 200
+    - url: https://digitalisate.sub.uni-hamburg.de/oai?verb=Identify
+      status: 200
+    - url: https://login.uni-hamburg.de/idp/shibboleth
+      status: 200
+    - url: https://mdq.aai.dfn.de/entities/https%3A%2F%2Flogin.uni-hamburg.de%2Fidp%2Fshibboleth
+      status: 200
+    - url: https://api.datacite.org/prefixes/10.25592
+      status: 200
+    - url: https://api.crossref.org/members/25426
+      status: 200
+    - url: https://ror.org/00g30e956
+      status: 200
+    - url: https://katalogplus.sub.uni-hamburg.de/vufind/api/v1/search?lookfor=hamburg&limit=1
+      status: 200
+      note: Soft-200 — identical 1,989-byte authorization shell, not an API.
+    - url: https://kataloge.uni-hamburg.de/api/v1/search?lookfor=test&limit=1
+      status: 200
+      note: Soft-200 — cookie-consent HTML shell, not an API.
+    - url: https://www.uni-hamburg.de/llms.txt
+      status: 404
+    - url: https://www.uni-hamburg.de/.well-known/security.txt
+      status: 404
+    - url: https://ediss.sub.uni-hamburg.de/server/api
+      status: 404
+      note: No DSpace 7 REST API; /rest also 404.
+x-enrichment:
+  pipeline: pipeline-university
+  generated: '2026-09-01'
+  method: probed
+  note: >-
+    Operator axis settled before any contract was saved. The only OpenAPI in this
+    repo was derived by API Evangelist from live probes of an institution-operated
+    host; the institution publishes none.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
