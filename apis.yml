@@ -43,7 +43,7 @@ accessModel:
   - https://www.fdr.uni-hamburg.de/api/records/?size=1
   generated: '2026-09-01'
   method: probed
-position: Consumer
+position: Consuming
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/universitat-hamburg.png
 url: https://raw.githubusercontent.com/api-evangelist/universitat-hamburg/refs/heads/main/apis.yml
