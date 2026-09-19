@@ -176,6 +176,12 @@ apis:
   - Identity Federation
   - SAML
   - Shibboleth
+  - SSO
+  - Metadata
+  tags_raw:
+  - Identity Federation
+  - SAML
+  - Shibboleth
   - Single Sign-On
   - Metadata
   properties:
@@ -291,6 +297,8 @@ apis:
   humanURL: https://www.fdr.uni-hamburg.de/
   baseURL: https://www.fdr.uni-hamburg.de/api
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
