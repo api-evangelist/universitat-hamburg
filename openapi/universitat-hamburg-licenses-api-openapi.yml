@@ -1,0 +1,62 @@
+openapi: 3.2.0
+info:
+  title: Universität Hamburg ZFDM Research Data Repository Licenses…
+  version: '2026-09-01'
+  description: Read API of the ZFDM Repository (Forschungsdatenrepositorium) operated by Universität Hamburg's Zentrum für nachhaltiges Forschungsdatenmanagement on the institution's own host, www.fdr.uni-hamburg.de.
+  contact:
+    name: ZFDM Repository, Universität Hamburg
+    email: repository.fdm@uni-hamburg.de
+    url: https://www.fdr.uni-hamburg.de/
+  license:
+    name: Per-record; see the `metadata.license` field of each record
+    url: https://www.fdr.uni-hamburg.de/
+servers:
+- url: https://www.fdr.uni-hamburg.de/api
+  description: Production — Universität Hamburg ZFDM Repository
+tags:
+- name: Licenses
+  description: Controlled license vocabulary used by records.
+paths:
+  /licenses/:
+    get:
+      tags:
+      - Licenses
+      summary: List the license vocabulary
+      description: Verified live 2026-09-01 returning 200 application/json.
+      operationId: listLicenses
+      parameters:
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A page of license terms.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hits:
+                    type: object
+                    properties:
+                      hits:
+                        type: array
+                        items:
+                          type: object
+x-provenance:
+  generated: '2026-09-01'
+  method: derived
+  source:
+  - https://www.fdr.uni-hamburg.de/api/records/?size=1&sort=mostrecent
+  - https://www.fdr.uni-hamburg.de/api/records/?q=climate&size=2
+  - https://www.fdr.uni-hamburg.de/api/records/?communities=uhh&size=1
+  - https://www.fdr.uni-hamburg.de/api/records/19607
+  - https://www.fdr.uni-hamburg.de/api/records/999999999
+  - https://www.fdr.uni-hamburg.de/api/communities
+  - https://www.fdr.uni-hamburg.de/api/communities/uhh
+  - https://www.fdr.uni-hamburg.de/api/licenses/?size=2
+  - https://www.fdr.uni-hamburg.de/api/files/de21a6b6-468b-4bdb-8fc7-1e0a07562382
+  note: Derived from live unauthenticated probes of www.fdr.uni-hamburg.de on 2026-09-01. No vendor or upstream-project documentation was copied. The provider does not publish an OpenAPI for this service.
+x-operator: institution

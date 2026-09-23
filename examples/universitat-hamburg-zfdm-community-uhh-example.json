@@ -1,0 +1,16 @@
+{
+    "title": "UHH",
+    "curation_policy": "All submissions will be added to the UHH community if the metadata is conclusive.",
+    "id": "uhh",
+    "last_record_accepted": "2000-01-01T00:00:00+00:00",
+    "updated": "2019-08-28T09:19:45.376602+00:00",
+    "page": "",
+    "description": "",
+    "logo_url": "https://www.fdr.uni-hamburg.de/api/files/00000000-0000-0000-0000-000000000000/uhh/logo.jpg",
+    "id_user": 1,
+    "created": "2019-04-03T14:12:08.372841+00:00",
+    "links": {
+        "self": "https://www.fdr.uni-hamburg.de/api/communities/uhh",
+        "html": "https://www.fdr.uni-hamburg.de/communities/uhh/"
+    }
+}

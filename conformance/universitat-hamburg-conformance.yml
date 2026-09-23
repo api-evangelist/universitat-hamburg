@@ -1,0 +1,153 @@
+specification: API Evangelist Conformance Record
+specificationVersion: '0.1'
+provider: Universität Hamburg
+providerId: universitat-hamburg
+regime: education
+generated: '2026-09-01'
+method: probed
+source:
+  - https://www.fdr.uni-hamburg.de/oai2d?verb=Identify
+  - https://www.fdr.uni-hamburg.de/oai2d?verb=ListMetadataFormats
+  - https://ediss.sub.uni-hamburg.de/oai/request?verb=Identify
+  - https://ediss.sub.uni-hamburg.de/oai/request?verb=ListMetadataFormats
+  - https://hup.sub.uni-hamburg.de/index.php/index/oai?verb=Identify
+  - https://journals.sub.uni-hamburg.de/index.php/index/oai?verb=Identify
+  - https://digitalisate.sub.uni-hamburg.de/oai?verb=Identify
+  - https://login.uni-hamburg.de/idp/shibboleth
+  - https://mdq.aai.dfn.de/entities/https%3A%2F%2Flogin.uni-hamburg.de%2Fidp%2Fshibboleth
+  - https://api.datacite.org/prefixes/10.25592
+  - https://api.datacite.org/clients/tib.fdmuh
+  - https://api.datacite.org/clients/zbw.subhh
+  - https://api.crossref.org/members/25426
+  - https://api.ror.org/v2/organizations?query=Universitat+Hamburg
+  - https://www.fdr.uni-hamburg.de/api/records/?size=1&sort=mostrecent
+note: >-
+  Conformance is recorded only where a live machine-readable response on a
+  Universität Hamburg host, or an authoritative registry record naming the
+  institution, evidences it. Standards in the education regime that were probed
+  for and NOT found are listed under `not_found` rather than left blank.
+conforms:
+  - standard: oai-pmh
+    version: '2.0'
+    status: verified
+    detail: >-
+      Five distinct live OAI-PMH 2.0 repositories on Universität Hamburg hosts,
+      each returning a valid Identify response.
+    evidence:
+      - url: https://www.fdr.uni-hamburg.de/oai2d?verb=Identify
+        status: 200
+        note: repositoryName "ZFDM Repository", adminEmail repository.fdm@uni-hamburg.de.
+      - url: https://ediss.sub.uni-hamburg.de/oai/request?verb=Identify
+        status: 200
+        note: DSpace XOAI, repositoryName ediss.sub.hamburg; 9 metadata formats.
+      - url: https://hup.sub.uni-hamburg.de/index.php/index/oai?verb=Identify
+        status: 200
+        note: OJS (Hamburg University Press); 15 sets.
+      - url: https://journals.sub.uni-hamburg.de/index.php/index/oai?verb=Identify
+        status: 200
+        note: Journal Server of Hamburg University Press; 100+ sets.
+      - url: https://digitalisate.sub.uni-hamburg.de/oai?verb=Identify
+        status: 200
+        note: >-
+          Kitodo.Presentation; serving real PPN identifiers. adminEmail is the
+          software default (unknown@example.org) — the deployment is live but the
+          Identify block is unconfigured.
+  - standard: datacite
+    status: verified
+    detail: >-
+      Universität Hamburg is a DataCite registrant and mints DOIs under prefix
+      10.25592; the ZFDM Repository serves DataCite metadata over OAI-PMH.
+    evidence:
+      - url: https://api.datacite.org/prefixes/10.25592
+        status: 200
+        note: Prefix 10.25592 maps to DataCite client tib.fdmuh, registered 2017.
+      - url: https://api.datacite.org/clients/tib.fdmuh
+        status: 200
+        note: Client name "Universität Hamburg".
+      - url: https://api.datacite.org/clients/zbw.subhh
+        status: 200
+        note: >-
+          Client name "Staats- und Universitätsbibliothek Hamburg Carl von
+          Ossietzky" (the university library), registered 2016.
+      - url: https://www.fdr.uni-hamburg.de/oai2d?verb=ListMetadataFormats
+        status: 200
+        note: metadataPrefixes datacite, datacite3, oai_datacite, oai_datacite3.
+      - url: https://ediss.sub.uni-hamburg.de/oai/request?verb=ListMetadataFormats
+        status: 200
+        note: metadataPrefix oai_datacite offered alongside xMetaDissPlus and epicur.
+  - standard: crossref
+    status: verified
+    detail: >-
+      The Staats- und Universitätsbibliothek Hamburg (Universität Hamburg's
+      library, publisher of Hamburg University Press) is a Crossref member.
+    evidence:
+      - url: https://api.crossref.org/members/25426
+        status: 200
+        note: >-
+          Member 25426, "Staats- und Universitatsbibliothek Hamburg Carl von
+          Ossietzky", prefix 10.15460, 3,954 DOIs deposited.
+  - standard: saml
+    version: '2.0'
+    status: verified
+    detail: >-
+      Universität Hamburg operates its own SAML 2.0 Identity Provider and
+      publishes signed metadata on its own host.
+    evidence:
+      - url: https://login.uni-hamburg.de/idp/shibboleth
+        status: 200
+        note: >-
+          application/xml, 13,574 bytes. entityID
+          https://login.uni-hamburg.de/idp/shibboleth, mdui:DisplayName
+          "Universität Hamburg (UHH)", protocolSupportEnumeration
+          urn:oasis:names:tc:SAML:2.0:protocol, 3 SingleSignOnService endpoints
+          over HTTP-POST, HTTP-POST-SimpleSign, HTTP-Redirect and SOAP bindings.
+  - standard: shibboleth
+    status: verified
+    detail: >-
+      The IdP is a Shibboleth deployment operated by the Regionales Rechenzentrum
+      (RRZ) and registered in the DFN-AAI federation, which is the German
+      eduGAIN member federation.
+    evidence:
+      - url: https://mdq.aai.dfn.de/entities/https%3A%2F%2Flogin.uni-hamburg.de%2Fidp%2Fshibboleth
+        status: 200
+        note: >-
+          application/samlmetadata+xml, 24,848 bytes. registrationAuthority
+          https://www.aai.dfn.de; entity-category-support includes REFEDS
+          Research & Scholarship and the GÉANT Data Protection Code of Conduct
+          v1.
+      - url: https://www.rrz.uni-hamburg.de/services/weitere/authentifizierung/shibboleth/configure.html
+        status: 200
+        note: >-
+          RRZ Shibboleth Service Provider configuration guide naming the
+          institution's IdP endpoints.
+  - standard: orcid
+    status: partial
+    detail: >-
+      ORCID iDs are carried in live ZFDM Repository record metadata and the
+      Forschungsportal documents institutional ORCID integration. No evidence
+      was found of a Universität Hamburg ORCID consortium membership record, so
+      this is recorded as partial rather than verified.
+    evidence:
+      - url: https://www.fdr.uni-hamburg.de/api/records/?size=1&sort=mostrecent
+        status: 200
+        note: >-
+          metadata.creators[].orcid populated with ORCID iDs in live responses
+          (e.g. 0000-0002-6058-1711).
+      - url: https://www.fis.uni-hamburg.de/ueber-das-portal/orcid.html
+        status: 200
+        note: Forschungsportal page documenting ORCID use at the institution.
+not_found:
+  - standard: scim
+    detail: No SCIM 2.0 provisioning endpoint or documentation found on any uni-hamburg.de host.
+  - standard: lti
+    detail: >-
+      No public LTI tool/platform registration surface found; the learning
+      platforms are behind Shibboleth authentication.
+  - standard: oneroster
+    detail: No IMS OneRoster surface found. Not in common use in the German HE sector.
+  - standard: ed-fi
+    detail: No Ed-Fi surface found. Ed-Fi is a US K-12 standard and not applicable here.
+  - standard: caliper
+    detail: No Caliper Analytics endpoint or statement found.
+  - standard: qti
+    detail: No QTI item bank or assessment interchange surface found.

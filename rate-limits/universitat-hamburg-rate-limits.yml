@@ -4,7 +4,7 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Universität Hamburg
 providerId: universitat-hamburg
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-09-01'
 reconciled: false
 tags:
 - Education
@@ -19,14 +19,34 @@ description: >-
 notes: Confirm per-service limits with each API's documentation; harvest responsibly.
 sources:
 - https://raw.githubusercontent.com/api-evangelist/universitat-hamburg/refs/heads/main/apis.yml
+- https://www.fdr.uni-hamburg.de/api/records/?size=1
 responseCodes:
   throttled: 429
 limits:
+- name: ZFDM Research Data Repository API
+  scope: client
+  metric: requests-per-window
+  limit: 5000
+  headers:
+  - X-RateLimit-Limit
+  - X-RateLimit-Remaining
+  - X-RateLimit-Reset
+  generated: '2026-09-01'
+  method: probed
+  source: https://www.fdr.uni-hamburg.de/api/records/?size=1
+  notes: >-
+    Observed live 2026-09-01 on https://www.fdr.uni-hamburg.de/api — response
+    headers advertise X-RateLimit-Limit 5000 with X-RateLimit-Remaining and a
+    Unix-epoch X-RateLimit-Reset. The window length is not stated in the headers
+    and is not documented by the institution. No 429 was induced during probing.
 - name: Default
   scope: client
   metric: requests-per-minute
   limit: see service documentation
-  notes: No published global limit; large harvests may be rate-limited.
+  method: derived
+  notes: >-
+    No published global limit across the OAI-PMH endpoints; large harvests may be
+    rate-limited.
 policies:
 - name: Backoff Strategy
   description: Exponential backoff with jitter; honor Retry-After; harvest during off-peak hours.

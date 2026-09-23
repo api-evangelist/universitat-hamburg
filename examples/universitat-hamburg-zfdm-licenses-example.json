@@ -1,0 +1,74 @@
+{
+    "aggregations": {},
+    "hits": {
+        "hits": [
+            {
+                "created": "2019-04-03T14:10:49.350689+00:00",
+                "links": {
+                    "self": "https://www.fdr.uni-hamburg.de/api/licenses/artistic-license-2.0"
+                },
+                "metadata": {
+                    "$schema": "http://zenodo.org/schemas/licenses/license-v1.0.0.json",
+                    "domain_content": false,
+                    "domain_data": false,
+                    "domain_software": true,
+                    "family": "",
+                    "id": "artistic-license-2.0",
+                    "maintainer": "",
+                    "od_conformance": "rejected",
+                    "osd_conformance": "approved",
+                    "status": "active",
+                    "suggest": {
+                        "input": [
+                            "artistic-license-2.0",
+                            "Artistic license 2.0"
+                        ],
+                        "output": "Artistic license 2.0",
+                        "payload": {
+                            "id": "artistic-license-2.0"
+                        }
+                    },
+                    "title": "Artistic license 2.0",
+                    "url": "http://www.opensource.org/licenses/artistic-license-2.0.php"
+                },
+                "updated": "2019-04-03T14:10:49.350694+00:00"
+            },
+            {
+                "created": "2019-04-03T14:10:49.393763+00:00",
+                "links": {
+                    "self": "https://www.fdr.uni-hamburg.de/api/licenses/bsd-license"
+                },
+                "metadata": {
+                    "$schema": "http://zenodo.org/schemas/licenses/license-v1.0.0.json",
+                    "domain_content": false,
+                    "domain_data": false,
+                    "domain_software": true,
+                    "family": "",
+                    "id": "bsd-license",
+                    "maintainer": "",
+                    "od_conformance": "rejected",
+                    "osd_conformance": "approved",
+                    "status": "active",
+                    "suggest": {
+                        "input": [
+                            "bsd-license",
+                            "BSD licenses (New and Simplified)"
+                        ],
+                        "output": "BSD licenses (New and Simplified)",
+                        "payload": {
+                            "id": "bsd-license"
+                        }
+                    },
+                    "title": "BSD licenses (New and Simplified)",
+                    "url": "http://www.opensource.org/licenses/bsd-license.php"
+                },
+                "updated": "2019-04-03T14:10:49.393769+00:00"
+            }
+        ],
+        "total": 474
+    },
+    "links": {
+        "next": "https://www.fdr.uni-hamburg.de/api/licenses/?page=2&size=2",
+        "self": "https://www.fdr.uni-hamburg.de/api/licenses/?page=1&size=2"
+    }
+}

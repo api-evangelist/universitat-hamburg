@@ -1,0 +1,86 @@
+[
+    {
+        "conceptdoi": "10.25592/uhhfdm.19479",
+        "conceptrecid": "19479",
+        "created": "2026-09-01T13:51:38.374248+00:00",
+        "doi": "10.25592/uhhfdm.19607",
+        "doi_url": "http://doi.org/10.25592/uhhfdm.19607",
+        "id": 19607,
+        "links": {
+            "badge": "https://www.fdr.uni-hamburg.de/badge/doi/10.25592/uhhfdm.19607.svg",
+            "bucket": "https://www.fdr.uni-hamburg.de/api/files/de21a6b6-468b-4bdb-8fc7-1e0a07562382",
+            "conceptbadge": "https://www.fdr.uni-hamburg.de/badge/doi/10.25592/uhhfdm.19479.svg",
+            "conceptdoi": "http://doi.org/10.25592/uhhfdm.19479",
+            "doi": "http://doi.org/10.25592/uhhfdm.19607",
+            "html": "https://www.fdr.uni-hamburg.de/record/19607",
+            "latest": "https://www.fdr.uni-hamburg.de/api/records/19607",
+            "latest_html": "https://www.fdr.uni-hamburg.de/record/19607",
+            "self": "https://www.fdr.uni-hamburg.de/api/records/19607"
+        },
+        "metadata": {
+            "access_right": "open",
+            "communities": [
+                {
+                    "identifier": "reaction"
+                },
+                {
+                    "identifier": "uhh"
+                }
+            ],
+            "creators": [
+                {
+                    "affiliation": "Universit\u00e4t Hamburg",
+                    "name": "Bl\u00fcthmann, Nadia",
+                    "orcid": "0009-0001-8990-4334"
+                },
+                {
+                    "affiliation": "Universit\u00e4t Hamburg",
+                    "name": "Brase, Alexa",
+                    "orcid": "0000-0002-6058-1711"
+                },
+                {
+                    "affiliation": "Universit\u00e4t Hamburg",
+                    "name": "L\u00fcbcke, Eileen",
+                    "orcid": "0009-0002-9891-374X"
+                }
+            ],
+            "description": "<p>Zusammenfassung: Unterst&uuml;tzende Beziehungen sind sowohl f&uuml;r das Lernen als auch f&uuml;r die pers&ouml;nliche Entwicklung Studierender wichtig. Wir wollen Lehrenden literatur- und erfahrungsbasiert einen&nbsp;Einblick geben, welche Prinzipien eine beziehungsorientierte Hochschulbildung leiten k&ouml;nnen, und&nbsp;Beispiele nennen, wie dies in Lehrveranstaltungen und dar&uuml;ber hinaus umgesetzt werden kann.</p>\n\n<p>Abstract: Supportive relationships are important for both students&rsquo; learning and their personal development. We aim to provide lecturers with literature- and experience-based insights into the principles that can guide relationship-rich higher education and offer examples of how this can be implemented in the classroom and beyond.</p>",
+            "doi": "10.25592/uhhfdm.19607",
+            "journal_issue": "2",
+            "journal_pages": "1-8",
+            "journal_title": "Strengthening Relationships and Academic Belonging in Higher Education",
+            "journal_volume": "1",
+            "keywords": [
+                "Beziehungsorientierte Hochschullehre",
+                "Relationship-Rich Education",
+                "Hochschule",
+                "Universit\u00e4t",
+                "Higher Education",
+                "University"
+            ],
+            "language": "deu",
+            "license": "CC-BY-4.0",
+            "prereserve_doi": {
+                "doi": "10.25592/uhhfdm.19607",
+                "recid": 19607
+            },
+            "publication_date": "2026-08-27",
+            "publication_type": "workingpaper",
+            "related_identifiers": [
+                {
+                    "identifier": "10.25592/uhhfdm.19479",
+                    "relation": "isVersionOf",
+                    "scheme": "doi"
+                }
+            ],
+            "title": "Hochschulbildung beziehungsorientiert gestalten: Ideen f\u00fcr die Lehrpraxis",
+            "upload_type": "publication"
+        },
+        "modified": "2026-09-01T13:51:38.557288+00:00",
+        "owner": 243,
+        "record_id": 19607,
+        "state": "done",
+        "submitted": true,
+        "title": "Hochschulbildung beziehungsorientiert gestalten: Ideen f\u00fcr die Lehrpraxis"
+    }
+]

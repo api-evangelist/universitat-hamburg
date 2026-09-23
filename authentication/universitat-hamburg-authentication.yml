@@ -1,0 +1,61 @@
+specification: API Commons Authentication
+specificationVersion: '0.1'
+provider: Universität Hamburg
+providerId: universitat-hamburg
+generated: '2026-09-01'
+method: probed
+source:
+  - https://www.fdr.uni-hamburg.de/api/records/?size=1
+  - https://www.fdr.uni-hamburg.de/api/deposit/depositions
+  - https://ediss.sub.uni-hamburg.de/oai/request?verb=Identify
+  - https://login.uni-hamburg.de/idp/shibboleth
+  - https://www.rrz.uni-hamburg.de/services/weitere/authentifizierung/shibboleth/configure.html
+description: >-
+  Universität Hamburg's public read surfaces are open and unauthenticated. Write
+  access to the research-data repository, and access to every campus system,
+  runs through the institution's own Shibboleth/SAML 2.0 Identity Provider —
+  which is itself the institution's strongest machine-readable surface.
+schemes:
+  - name: none
+    applies_to:
+      - https://www.fdr.uni-hamburg.de/api (read paths)
+      - https://www.fdr.uni-hamburg.de/oai2d
+      - https://ediss.sub.uni-hamburg.de/oai/request
+      - https://hup.sub.uni-hamburg.de/index.php/index/oai
+      - https://journals.sub.uni-hamburg.de/index.php/index/oai
+      - https://digitalisate.sub.uni-hamburg.de/oai
+    detail: >-
+      No credential of any kind is required. Verified 2026-09-01: all six return
+      200 with no Authorization header sent. The ZFDM API additionally sets
+      `Access-Control-Allow-Origin: *`, so browser clients can call it directly.
+  - name: bearer-token
+    applies_to:
+      - https://www.fdr.uni-hamburg.de/api/deposit/depositions
+    detail: >-
+      Deposit (write) paths are credentialed. Verified 2026-09-01 returning
+      HTTP 401 with a JSON body stating that the server could not verify
+      authorization. Token issuance is account-based and is not self-service;
+      no public registration flow was found.
+  - name: saml2-shibboleth
+    applies_to:
+      - STiNE campus management (https://www.stine.uni-hamburg.de/)
+      - RRZ GitLab (https://gitlab.rrz.uni-hamburg.de/)
+      - Licensed library and e-resource services
+    detail: >-
+      Federated single sign-on via the institution's own Shibboleth IdP,
+      entityID https://login.uni-hamburg.de/idp/shibboleth, registered in DFN-AAI
+      (registrationAuthority https://www.aai.dfn.de) and thereby in eduGAIN.
+      Metadata is served at the entityID URL and via the DFN-AAI MDQ service.
+      The IdP asserts support for the REFEDS Research & Scholarship entity
+      category and the GÉANT Data Protection Code of Conduct v1.
+    metadata_url: https://login.uni-hamburg.de/idp/shibboleth
+    federation: DFN-AAI (eduGAIN)
+not_offered:
+  - oauth2_authorization_code
+  - oauth2_client_credentials
+  - dynamic_client_registration
+  - api_key_self_service
+notes: >-
+  No OAuth 2.0 authorization server, no RFC 9728 protected-resource metadata and
+  no /.well-known catalog were found on any uni-hamburg.de host; /llms.txt and
+  /.well-known/security.txt on www.uni-hamburg.de both return 404.

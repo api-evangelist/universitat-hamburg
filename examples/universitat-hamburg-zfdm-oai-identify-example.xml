@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+  <responseDate>2026-09-01T17:45:37Z</responseDate>
+  <request verb="Identify">https://www.fdr.uni-hamburg.de/oai2d</request>
+  <Identify>
+    <repositoryName>ZFDM Repository</repositoryName>
+    <baseURL>https://www.fdr.uni-hamburg.de/oai2d</baseURL>
+    <protocolVersion>2.0</protocolVersion>
+    <adminEmail>repository.fdm@uni-hamburg.de</adminEmail>
+    <earliestDatestamp>2019-04-03T14:36:59Z</earliestDatestamp>
+    <deletedRecord>no</deletedRecord>
+    <granularity>YYYY-MM-DDThh:mm:ssZ</granularity>
+  </Identify>
+</OAI-PMH>

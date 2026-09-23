@@ -1,0 +1,43 @@
+specification: API Commons Errors
+specificationVersion: '0.1'
+provider: Universität Hamburg
+providerId: universitat-hamburg
+generated: '2026-09-01'
+method: probed
+source:
+  - https://www.fdr.uni-hamburg.de/api/records/999999999
+  - https://www.fdr.uni-hamburg.de/api/deposit/depositions
+  - https://www.fdr.uni-hamburg.de/api/records/?size=1
+description: >-
+  Error semantics observed live on the ZFDM Research Data Repository API, the
+  only Universität Hamburg surface that returns structured machine-readable
+  errors. The institution publishes no error reference; this record is derived
+  from probes.
+media_type: application/json
+shape:
+  type: object
+  properties:
+    status: integer
+    message: string
+errors:
+  - status: 404
+    body: '{"status": 404, "message": "PID does not exist."}'
+    detail: Returned for an unknown record identifier. Verified 2026-09-01.
+    evidence:
+      url: https://www.fdr.uni-hamburg.de/api/records/999999999
+  - status: 401
+    body_summary: >-
+      JSON object with `status: 401` and a message stating the server could not
+      verify authorization for the requested URL.
+    detail: Returned for unauthenticated access to deposit (write) paths. Verified 2026-09-01.
+    evidence:
+      url: https://www.fdr.uni-hamburg.de/api/deposit/depositions
+  - status: 429
+    detail: >-
+      NOT OBSERVED. The API advertises X-RateLimit-Limit 5000 with Remaining and
+      Reset headers, so a throttled response is expected, but no 429 was induced
+      during probing and none is documented. Recorded as expected-but-unverified.
+    verified: false
+notes: >-
+  No RFC 7807 / RFC 9457 problem+json is used. No error code vocabulary, no
+  machine-readable error catalog and no Retry-After documentation were found.

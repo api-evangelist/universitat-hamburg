@@ -1,0 +1,297 @@
+# x-archived-from: universitat-hamburg-zfdm-repository-openapi.yml
+# x-archived-on: 2026-09-16
+openapi: 3.0.3
+info:
+  title: Universität Hamburg ZFDM Research Data Repository API
+  version: '2026-09-01'
+  description: >-
+    Read API of the ZFDM Repository (Forschungsdatenrepositorium) operated by
+    Universität Hamburg's Zentrum für nachhaltiges Forschungsdatenmanagement on
+    the institution's own host, www.fdr.uni-hamburg.de. The repository publishes
+    research data, publications and teaching materials of Universität Hamburg and
+    mints DataCite DOIs under the institutional prefix 10.25592 (DataCite
+    registrant tib.fdmuh, "Universität Hamburg").
+
+    OPERATOR NOTE — this document was DERIVED BY API EVANGELIST from live,
+    unauthenticated probes of this host on 2026-09-01; it is not a vendor
+    document and Universität Hamburg does not publish an OpenAPI for this
+    service. The repository runs Invenio (the Zenodo-derived record/deposit API
+    shape upstream of this deployment), so the CONTRACT SHAPE originates with the
+    Invenio project while the DEPLOYMENT, the host, the identifiers and the data
+    are operated by Universität Hamburg. Only paths and responses observed live
+    on this host are described here. Nothing was copied from Invenio or Zenodo
+    documentation and nothing was inferred.
+  contact:
+    name: ZFDM Repository, Universität Hamburg
+    email: repository.fdm@uni-hamburg.de
+    url: https://www.fdr.uni-hamburg.de/
+  license:
+    name: Per-record; see the `metadata.license` field of each record
+    url: https://www.fdr.uni-hamburg.de/
+servers:
+  - url: https://www.fdr.uni-hamburg.de/api
+    description: Production — Universität Hamburg ZFDM Repository
+tags:
+  - name: Records
+    description: Published research-data records and their metadata.
+  - name: Communities
+    description: Curated collections within the repository.
+  - name: Licenses
+    description: Controlled license vocabulary used by records.
+  - name: Files
+    description: File buckets attached to a record.
+paths:
+  /records/:
+    get:
+      tags: [ Records ]
+      summary: Search published records
+      description: >-
+        Returns a page of published records. Verified live 2026-09-01 returning
+        200 application/json with an RFC 8288 `Link` header carrying `rel="self"`
+        and `rel="next"`, and `X-RateLimit-Limit` / `X-RateLimit-Remaining` /
+        `X-RateLimit-Reset` headers. `Access-Control-Allow-Origin: *` is set.
+      operationId: searchRecords
+      parameters:
+        - name: q
+          in: query
+          description: Free-text query. Verified with `q=climate`.
+          required: false
+          schema: { type: string }
+        - name: size
+          in: query
+          description: Records per page. Verified with `size=1` and `size=2`.
+          required: false
+          schema: { type: integer, minimum: 1 }
+        - name: page
+          in: query
+          description: 1-based page number, as emitted in the `Link` header.
+          required: false
+          schema: { type: integer, minimum: 1 }
+        - name: sort
+          in: query
+          description: Sort order. Verified with `sort=mostrecent`.
+          required: false
+          schema: { type: string }
+        - name: communities
+          in: query
+          description: Restrict to a community identifier. Verified with `communities=uhh`.
+          required: false
+          schema: { type: string }
+      responses:
+        '200':
+          description: A page of records.
+          headers:
+            Link:
+              description: RFC 8288 pagination links (`self`, `next`).
+              schema: { type: string }
+            X-RateLimit-Limit:
+              description: Observed live as 5000.
+              schema: { type: integer }
+            X-RateLimit-Remaining:
+              schema: { type: integer }
+            X-RateLimit-Reset:
+              description: Unix epoch seconds at which the window resets.
+              schema: { type: integer }
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aggregations: { type: object }
+                  hits:
+                    type: object
+                    properties:
+                      hits:
+                        type: array
+                        items: { $ref: '#/components/schemas/Record' }
+                      total: { type: integer }
+                  links: { type: object, additionalProperties: { type: string } }
+  /records/{id}:
+    get:
+      tags: [ Records ]
+      summary: Retrieve one record
+      description: Verified live 2026-09-01 with id 19607 (DOI 10.25592/uhhfdm.19607).
+      operationId: getRecord
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Numeric record id.
+          schema: { type: integer }
+      responses:
+        '200':
+          description: The record.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Record' }
+        '404':
+          description: >-
+            No such persistent identifier. Verified live returning
+            `{"status": 404, "message": "PID does not exist."}`.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+  /communities:
+    get:
+      tags: [ Communities ]
+      summary: List communities
+      description: Verified live 2026-09-01 returning 200 application/json.
+      operationId: listCommunities
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema: { type: string }
+      responses:
+        '200':
+          description: A page of communities.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hits:
+                    type: object
+                    properties:
+                      hits:
+                        type: array
+                        items: { $ref: '#/components/schemas/Community' }
+  /communities/{communityId}:
+    get:
+      tags: [ Communities ]
+      summary: Retrieve one community
+      description: Verified live 2026-09-01 with communityId `uhh`.
+      operationId: getCommunity
+      parameters:
+        - name: communityId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: The community.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Community' }
+  /licenses/:
+    get:
+      tags: [ Licenses ]
+      summary: List the license vocabulary
+      description: Verified live 2026-09-01 returning 200 application/json.
+      operationId: listLicenses
+      parameters:
+        - name: size
+          in: query
+          required: false
+          schema: { type: integer }
+      responses:
+        '200':
+          description: A page of license terms.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hits:
+                    type: object
+                    properties:
+                      hits:
+                        type: array
+                        items: { type: object }
+  /files/{bucketId}:
+    get:
+      tags: [ Files ]
+      summary: List the files in a record's bucket
+      description: >-
+        Verified live 2026-09-01 with the bucket id published in a record's
+        `links.bucket`.
+      operationId: listBucketFiles
+      parameters:
+        - name: bucketId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: The bucket contents.
+          content:
+            application/json:
+              schema: { type: object }
+components:
+  schemas:
+    Record:
+      type: object
+      description: Fields observed in live responses on this host.
+      properties:
+        id: { type: integer }
+        doi: { type: string, example: 10.25592/uhhfdm.19607 }
+        doi_url: { type: string, format: uri }
+        conceptdoi: { type: string }
+        conceptrecid: { type: string }
+        created: { type: string, format: date-time }
+        updated: { type: string, format: date-time }
+        links:
+          type: object
+          additionalProperties: { type: string, format: uri }
+        metadata:
+          type: object
+          properties:
+            title: { type: string }
+            description: { type: string }
+            doi: { type: string }
+            access_right: { type: string }
+            language: { type: string }
+            license: { type: string }
+            keywords: { type: array, items: { type: string } }
+            communities:
+              type: array
+              items:
+                type: object
+                properties:
+                  identifier: { type: string }
+            creators:
+              type: array
+              items:
+                type: object
+                properties:
+                  name: { type: string }
+                  affiliation: { type: string }
+                  orcid:
+                    type: string
+                    description: ORCID iD of the creator, as published in live responses.
+    Community:
+      type: object
+      properties:
+        id: { type: string }
+        title: { type: string }
+        description: { type: string }
+        curation_policy: { type: string }
+        created: { type: string, format: date-time }
+        updated: { type: string, format: date-time }
+        logo_url: { type: string, format: uri }
+        links:
+          type: object
+          additionalProperties: { type: string, format: uri }
+    Error:
+      type: object
+      properties:
+        status: { type: integer }
+        message: { type: string }
+x-provenance:
+  generated: '2026-09-01'
+  method: derived
+  source:
+    - https://www.fdr.uni-hamburg.de/api/records/?size=1&sort=mostrecent
+    - https://www.fdr.uni-hamburg.de/api/records/?q=climate&size=2
+    - https://www.fdr.uni-hamburg.de/api/records/?communities=uhh&size=1
+    - https://www.fdr.uni-hamburg.de/api/records/19607
+    - https://www.fdr.uni-hamburg.de/api/records/999999999
+    - https://www.fdr.uni-hamburg.de/api/communities
+    - https://www.fdr.uni-hamburg.de/api/communities/uhh
+    - https://www.fdr.uni-hamburg.de/api/licenses/?size=2
+    - https://www.fdr.uni-hamburg.de/api/files/de21a6b6-468b-4bdb-8fc7-1e0a07562382
+  note: >-
+    Derived from live unauthenticated probes of www.fdr.uni-hamburg.de on
+    2026-09-01. No vendor or upstream-project documentation was copied. The
+    provider does not publish an OpenAPI for this service.
+x-operator: institution

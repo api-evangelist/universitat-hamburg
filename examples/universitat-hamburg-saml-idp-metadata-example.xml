@@ -1,0 +1,197 @@
+  <EntityDescriptor entityID="https://login.uni-hamburg.de/idp/shibboleth" xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:idpdisc="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" xmlns:remd="http://refeds.org/metadata" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:saml1md="urn:mace:shibboleth:metadata:1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:SAML:2.0:metadata saml-schema-metadata-2.0.xsd urn:mace:shibboleth:metadata:1.0 shibboleth-metadata-1.0.xsd http://www.w3.org/2000/09/xmldsig# xmldsig-core-schema.xsd">
+    <Extensions>
+      <mdrpi:RegistrationInfo registrationAuthority="https://www.aai.dfn.de" registrationInstant="2016-08-30T12:32:34Z">
+        <mdrpi:RegistrationPolicy xml:lang="en">https://www.aai.dfn.de/en/join/</mdrpi:RegistrationPolicy>
+        <mdrpi:RegistrationPolicy xml:lang="de">https://www.aai.dfn.de/teilnahme/</mdrpi:RegistrationPolicy>
+      </mdrpi:RegistrationInfo>
+      <mdattr:EntityAttributes>
+        <saml:Attribute Name="http://aai.dfn.de/loa/degree-of-reliance" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+          <saml:AttributeValue>advanced</saml:AttributeValue>
+        </saml:Attribute>
+      </mdattr:EntityAttributes>
+    </Extensions>
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <Extensions>
+        <saml1md:Scope regexp="false">uni-hamburg.de</saml1md:Scope>
+        <mdui:UIInfo>
+          <mdui:DisplayName xml:lang="de">Universität Hamburg (UHH)</mdui:DisplayName>
+          <mdui:DisplayName xml:lang="en">Universität Hamburg (UHH)</mdui:DisplayName>
+          <mdui:Description xml:lang="de">Zentraler Login-Server der Universität Hamburg</mdui:Description>
+          <mdui:Description xml:lang="en">Central login server of Universität Hamburg</mdui:Description>
+          <mdui:Logo height="223" width="226">https://login.uni-hamburg.de/idp/images/UHH-Logo.svg</mdui:Logo>
+          <mdui:InformationURL xml:lang="de">https://www.rrz.uni-hamburg.de/infrastruktur/authentifizierung.html</mdui:InformationURL>
+          <mdui:InformationURL xml:lang="en">https://www.rrz.uni-hamburg.de/infrastruktur/authentifizierung.html</mdui:InformationURL>
+          <mdui:PrivacyStatementURL xml:lang="de">https://www.uni-hamburg.de/datenschutz.html</mdui:PrivacyStatementURL>
+          <mdui:PrivacyStatementURL xml:lang="en">https://www.uni-hamburg.de/en/datenschutz.html</mdui:PrivacyStatementURL>
+        </mdui:UIInfo>
+      </Extensions>
+
+      <KeyDescriptor use="encryption">
+          <ds:KeyInfo>
+              <ds:KeyName>login.uni-hamburg.de</ds:KeyName>
+              <ds:X509Data>
+                  <ds:X509SubjectName>CN=login.uni-hamburg.de</ds:X509SubjectName>
+                  <ds:X509Certificate>MIIEXzCCAsegAwIBAgIUQtzXWDMQ0hOe3JxwTQbqnlmxjL8wDQYJKoZIhvcNAQEL
+BQAwHzEdMBsGA1UEAxMUbG9naW4udW5pLWhhbWJ1cmcuZGUwHhcNMjUwNjAyMDY0
+MDUwWhcNMjgwODE1MDY0MDUwWjAfMR0wGwYDVQQDExRsb2dpbi51bmktaGFtYnVy
+Zy5kZTCCAaIwDQYJKoZIhvcNAQEBBQADggGPADCCAYoCggGBAL1bgZRqHQy5h+L1
+MPV/z1+YQIhiq9LLbMtiGQSbYPvMzRX1be76FhmczblLyC1KJu4tfPbOfLBaH6Hw
+4ujGfnoYA7pypStlyK6XezVZg8G5DJAW21R10BA3mTWyjaYqdu69UJNjQe3LD1Bw
+Ph5UuzNx9q6via5Wpri8wKau50egkgWrVyVWPKibNsRDzRhP5OoOO5kMNOym24pd
+zdIGC9YYZoMJWcfjc5zubC8ppfdJ1ciFLjbwtSetEdZNL2D9wRYxAvwA5XnEyYZZ
+iDd6o8rT83SFlwzutP7DIKWtPrPm35l+gI1l+kgCuyzyuW5lOjDKecmkr4BEkBGA
+UhmbeH9roWSlzg6mcqeY6kDRZH9LWlbIfUfWM0zHt2AC9wUfaLJoZnOydWhwXVSS
+5zwK6tlSIh2332jUpabYttrFM3AuljA2IQv1D2b5FgkpmsjyN2GUELM4T45My+IO
+DrauPxa0sNMyttHcC5Dkl9XVs8EoBz/UzMEOjuhhx4R6k2IrawIDAQABo4GSMIGP
+MBMGA1UdIAQMMAowCAYGZ4EMAQICMAkGA1UdEwQCMAAwDgYDVR0PAQH/BAQDAgWg
+MB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAdBgNVHQ4EFgQUOc08d0xh
+OywzBPwQmqvyyHKFVScwHwYDVR0RBBgwFoIUbG9naW4udW5pLWhhbWJ1cmcuZGUw
+DQYJKoZIhvcNAQELBQADggGBAKUJXW9CL1brx0iZwiOjugL5qSn9/ZaLVBhlmXFf
+2PqTpTHolUM1es/utAieacFKv4CbDTBzUB2NJuWFXZGYzkNiQu38XqJzP1f98Ypm
+XwWn81BBh/osFS49mZwESxQGtyEvN7ZS+Lf9Gu2LjcjzvgSl9qEfbWZ7NGaGyEYy
+5zWmXsRs8VoOjpAd/BXrYw/SBMG4pI8AJ4hr7CN7+uxAp90vUXjJB+79JbsMQbiL
+Y4JgC1NfGDcWJcrUgIqudogaq43XucZhXJHLI7aaH60zB9yOgvtToBormBkB7eNM
+uFVCE77FnpUIq4QwqjFrsPqt16/1pTt0Ge88UQHjdjjI/ihcJTdiqS6TnxORIu8i
+LjqtFgNplFxJq8NkOhYDQ9ij4A2ohOy4xYiJIsRaOZZtNqOzXczWAFqFFxaCk0gS
+t+w9+kUhrH/gryYRAW9WGGw8V6QyUlGbsgdL+lXrQzMAYuCKo0Ma8hsuw1ClZEZp
+vP4rZ9NaGFCawNqc/JnLcsnETg==</ds:X509Certificate>
+              </ds:X509Data>
+          </ds:KeyInfo>
+      </KeyDescriptor>
+      <KeyDescriptor use="signing">
+          <ds:KeyInfo>
+              <ds:KeyName>login.uni-hamburg.de</ds:KeyName>
+              <ds:X509Data>
+                  <ds:X509SubjectName>CN=login.uni-hamburg.de</ds:X509SubjectName>
+                  <ds:X509Certificate>MIIEXzCCAsegAwIBAgIUQtzXWDMQ0hOe3JxwTQbqnlmxjL8wDQYJKoZIhvcNAQEL
+BQAwHzEdMBsGA1UEAxMUbG9naW4udW5pLWhhbWJ1cmcuZGUwHhcNMjUwNjAyMDY0
+MDUwWhcNMjgwODE1MDY0MDUwWjAfMR0wGwYDVQQDExRsb2dpbi51bmktaGFtYnVy
+Zy5kZTCCAaIwDQYJKoZIhvcNAQEBBQADggGPADCCAYoCggGBAL1bgZRqHQy5h+L1
+MPV/z1+YQIhiq9LLbMtiGQSbYPvMzRX1be76FhmczblLyC1KJu4tfPbOfLBaH6Hw
+4ujGfnoYA7pypStlyK6XezVZg8G5DJAW21R10BA3mTWyjaYqdu69UJNjQe3LD1Bw
+Ph5UuzNx9q6via5Wpri8wKau50egkgWrVyVWPKibNsRDzRhP5OoOO5kMNOym24pd
+zdIGC9YYZoMJWcfjc5zubC8ppfdJ1ciFLjbwtSetEdZNL2D9wRYxAvwA5XnEyYZZ
+iDd6o8rT83SFlwzutP7DIKWtPrPm35l+gI1l+kgCuyzyuW5lOjDKecmkr4BEkBGA
+UhmbeH9roWSlzg6mcqeY6kDRZH9LWlbIfUfWM0zHt2AC9wUfaLJoZnOydWhwXVSS
+5zwK6tlSIh2332jUpabYttrFM3AuljA2IQv1D2b5FgkpmsjyN2GUELM4T45My+IO
+DrauPxa0sNMyttHcC5Dkl9XVs8EoBz/UzMEOjuhhx4R6k2IrawIDAQABo4GSMIGP
+MBMGA1UdIAQMMAowCAYGZ4EMAQICMAkGA1UdEwQCMAAwDgYDVR0PAQH/BAQDAgWg
+MB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAdBgNVHQ4EFgQUOc08d0xh
+OywzBPwQmqvyyHKFVScwHwYDVR0RBBgwFoIUbG9naW4udW5pLWhhbWJ1cmcuZGUw
+DQYJKoZIhvcNAQELBQADggGBAKUJXW9CL1brx0iZwiOjugL5qSn9/ZaLVBhlmXFf
+2PqTpTHolUM1es/utAieacFKv4CbDTBzUB2NJuWFXZGYzkNiQu38XqJzP1f98Ypm
+XwWn81BBh/osFS49mZwESxQGtyEvN7ZS+Lf9Gu2LjcjzvgSl9qEfbWZ7NGaGyEYy
+5zWmXsRs8VoOjpAd/BXrYw/SBMG4pI8AJ4hr7CN7+uxAp90vUXjJB+79JbsMQbiL
+Y4JgC1NfGDcWJcrUgIqudogaq43XucZhXJHLI7aaH60zB9yOgvtToBormBkB7eNM
+uFVCE77FnpUIq4QwqjFrsPqt16/1pTt0Ge88UQHjdjjI/ihcJTdiqS6TnxORIu8i
+LjqtFgNplFxJq8NkOhYDQ9ij4A2ohOy4xYiJIsRaOZZtNqOzXczWAFqFFxaCk0gS
+t+w9+kUhrH/gryYRAW9WGGw8V6QyUlGbsgdL+lXrQzMAYuCKo0Ma8hsuw1ClZEZp
+vP4rZ9NaGFCawNqc/JnLcsnETg==</ds:X509Certificate>
+              </ds:X509Data>
+          </ds:KeyInfo>
+      </KeyDescriptor>
+      <ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://login.uni-hamburg.de:8443/idp/profile/SAML2/SOAP/ArtifactResolution" index="2"/>
+      <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://login.uni-hamburg.de/idp/profile/SAML2/Redirect/SLO"/>
+      <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://login.uni-hamburg.de/idp/profile/SAML2/POST/SLO"/>
+      <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://login.uni-hamburg.de/idp/profile/SAML2/POST-SimpleSign/SLO"/>
+      <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://login.uni-hamburg.de:8443/idp/profile/SAML2/SOAP/SLO"/>
+      <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+      <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://login.uni-hamburg.de/idp/profile/SAML2/POST/SSO"/>
+      <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://login.uni-hamburg.de/idp/profile/SAML2/POST-SimpleSign/SSO"/>
+      <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://login.uni-hamburg.de/idp/profile/SAML2/Redirect/SSO"/>
+    </IDPSSODescriptor>
+    <AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <Extensions>
+        <saml1md:Scope regexp="false">uni-hamburg.de</saml1md:Scope>
+      </Extensions>
+      <KeyDescriptor use="encryption">
+          <ds:KeyInfo>
+              <ds:KeyName>login.uni-hamburg.de</ds:KeyName>
+              <ds:X509Data>
+                  <ds:X509SubjectName>CN=login.uni-hamburg.de</ds:X509SubjectName>
+                  <ds:X509Certificate>MIIEXzCCAsegAwIBAgIUQtzXWDMQ0hOe3JxwTQbqnlmxjL8wDQYJKoZIhvcNAQEL
+BQAwHzEdMBsGA1UEAxMUbG9naW4udW5pLWhhbWJ1cmcuZGUwHhcNMjUwNjAyMDY0
+MDUwWhcNMjgwODE1MDY0MDUwWjAfMR0wGwYDVQQDExRsb2dpbi51bmktaGFtYnVy
+Zy5kZTCCAaIwDQYJKoZIhvcNAQEBBQADggGPADCCAYoCggGBAL1bgZRqHQy5h+L1
+MPV/z1+YQIhiq9LLbMtiGQSbYPvMzRX1be76FhmczblLyC1KJu4tfPbOfLBaH6Hw
+4ujGfnoYA7pypStlyK6XezVZg8G5DJAW21R10BA3mTWyjaYqdu69UJNjQe3LD1Bw
+Ph5UuzNx9q6via5Wpri8wKau50egkgWrVyVWPKibNsRDzRhP5OoOO5kMNOym24pd
+zdIGC9YYZoMJWcfjc5zubC8ppfdJ1ciFLjbwtSetEdZNL2D9wRYxAvwA5XnEyYZZ
+iDd6o8rT83SFlwzutP7DIKWtPrPm35l+gI1l+kgCuyzyuW5lOjDKecmkr4BEkBGA
+UhmbeH9roWSlzg6mcqeY6kDRZH9LWlbIfUfWM0zHt2AC9wUfaLJoZnOydWhwXVSS
+5zwK6tlSIh2332jUpabYttrFM3AuljA2IQv1D2b5FgkpmsjyN2GUELM4T45My+IO
+DrauPxa0sNMyttHcC5Dkl9XVs8EoBz/UzMEOjuhhx4R6k2IrawIDAQABo4GSMIGP
+MBMGA1UdIAQMMAowCAYGZ4EMAQICMAkGA1UdEwQCMAAwDgYDVR0PAQH/BAQDAgWg
+MB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAdBgNVHQ4EFgQUOc08d0xh
+OywzBPwQmqvyyHKFVScwHwYDVR0RBBgwFoIUbG9naW4udW5pLWhhbWJ1cmcuZGUw
+DQYJKoZIhvcNAQELBQADggGBAKUJXW9CL1brx0iZwiOjugL5qSn9/ZaLVBhlmXFf
+2PqTpTHolUM1es/utAieacFKv4CbDTBzUB2NJuWFXZGYzkNiQu38XqJzP1f98Ypm
+XwWn81BBh/osFS49mZwESxQGtyEvN7ZS+Lf9Gu2LjcjzvgSl9qEfbWZ7NGaGyEYy
+5zWmXsRs8VoOjpAd/BXrYw/SBMG4pI8AJ4hr7CN7+uxAp90vUXjJB+79JbsMQbiL
+Y4JgC1NfGDcWJcrUgIqudogaq43XucZhXJHLI7aaH60zB9yOgvtToBormBkB7eNM
+uFVCE77FnpUIq4QwqjFrsPqt16/1pTt0Ge88UQHjdjjI/ihcJTdiqS6TnxORIu8i
+LjqtFgNplFxJq8NkOhYDQ9ij4A2ohOy4xYiJIsRaOZZtNqOzXczWAFqFFxaCk0gS
+t+w9+kUhrH/gryYRAW9WGGw8V6QyUlGbsgdL+lXrQzMAYuCKo0Ma8hsuw1ClZEZp
+vP4rZ9NaGFCawNqc/JnLcsnETg==</ds:X509Certificate>
+              </ds:X509Data>
+          </ds:KeyInfo>
+      </KeyDescriptor>
+      <KeyDescriptor use="signing">
+          <ds:KeyInfo>
+              <ds:KeyName>login.uni-hamburg.de</ds:KeyName>
+              <ds:X509Data>
+                  <ds:X509SubjectName>CN=login.uni-hamburg.de</ds:X509SubjectName>
+                  <ds:X509Certificate>MIIEXzCCAsegAwIBAgIUQtzXWDMQ0hOe3JxwTQbqnlmxjL8wDQYJKoZIhvcNAQEL
+BQAwHzEdMBsGA1UEAxMUbG9naW4udW5pLWhhbWJ1cmcuZGUwHhcNMjUwNjAyMDY0
+MDUwWhcNMjgwODE1MDY0MDUwWjAfMR0wGwYDVQQDExRsb2dpbi51bmktaGFtYnVy
+Zy5kZTCCAaIwDQYJKoZIhvcNAQEBBQADggGPADCCAYoCggGBAL1bgZRqHQy5h+L1
+MPV/z1+YQIhiq9LLbMtiGQSbYPvMzRX1be76FhmczblLyC1KJu4tfPbOfLBaH6Hw
+4ujGfnoYA7pypStlyK6XezVZg8G5DJAW21R10BA3mTWyjaYqdu69UJNjQe3LD1Bw
+Ph5UuzNx9q6via5Wpri8wKau50egkgWrVyVWPKibNsRDzRhP5OoOO5kMNOym24pd
+zdIGC9YYZoMJWcfjc5zubC8ppfdJ1ciFLjbwtSetEdZNL2D9wRYxAvwA5XnEyYZZ
+iDd6o8rT83SFlwzutP7DIKWtPrPm35l+gI1l+kgCuyzyuW5lOjDKecmkr4BEkBGA
+UhmbeH9roWSlzg6mcqeY6kDRZH9LWlbIfUfWM0zHt2AC9wUfaLJoZnOydWhwXVSS
+5zwK6tlSIh2332jUpabYttrFM3AuljA2IQv1D2b5FgkpmsjyN2GUELM4T45My+IO
+DrauPxa0sNMyttHcC5Dkl9XVs8EoBz/UzMEOjuhhx4R6k2IrawIDAQABo4GSMIGP
+MBMGA1UdIAQMMAowCAYGZ4EMAQICMAkGA1UdEwQCMAAwDgYDVR0PAQH/BAQDAgWg
+MB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAdBgNVHQ4EFgQUOc08d0xh
+OywzBPwQmqvyyHKFVScwHwYDVR0RBBgwFoIUbG9naW4udW5pLWhhbWJ1cmcuZGUw
+DQYJKoZIhvcNAQELBQADggGBAKUJXW9CL1brx0iZwiOjugL5qSn9/ZaLVBhlmXFf
+2PqTpTHolUM1es/utAieacFKv4CbDTBzUB2NJuWFXZGYzkNiQu38XqJzP1f98Ypm
+XwWn81BBh/osFS49mZwESxQGtyEvN7ZS+Lf9Gu2LjcjzvgSl9qEfbWZ7NGaGyEYy
+5zWmXsRs8VoOjpAd/BXrYw/SBMG4pI8AJ4hr7CN7+uxAp90vUXjJB+79JbsMQbiL
+Y4JgC1NfGDcWJcrUgIqudogaq43XucZhXJHLI7aaH60zB9yOgvtToBormBkB7eNM
+uFVCE77FnpUIq4QwqjFrsPqt16/1pTt0Ge88UQHjdjjI/ihcJTdiqS6TnxORIu8i
+LjqtFgNplFxJq8NkOhYDQ9ij4A2ohOy4xYiJIsRaOZZtNqOzXczWAFqFFxaCk0gS
+t+w9+kUhrH/gryYRAW9WGGw8V6QyUlGbsgdL+lXrQzMAYuCKo0Ma8hsuw1ClZEZp
+vP4rZ9NaGFCawNqc/JnLcsnETg==</ds:X509Certificate>
+              </ds:X509Data>
+          </ds:KeyInfo>
+      </KeyDescriptor>
+      <AttributeService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://login.uni-hamburg.de:8443/idp/profile/SAML2/SOAP/AttributeQuery"/>
+      <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+    </AttributeAuthorityDescriptor>
+    <Organization>
+      <OrganizationName xml:lang="de">e84</OrganizationName>
+      <OrganizationName xml:lang="en">e84</OrganizationName>
+      <OrganizationDisplayName xml:lang="de">Universität Hamburg</OrganizationDisplayName>
+      <OrganizationDisplayName xml:lang="en">University of Hamburg</OrganizationDisplayName>
+      <OrganizationURL xml:lang="de">https://www.uni-hamburg.de</OrganizationURL>
+      <OrganizationURL xml:lang="en">https://www.uni-hamburg.de/en.html</OrganizationURL>
+    </Organization>
+    <ContactPerson contactType="technical">
+      <GivenName>Marvin</GivenName>
+      <SurName>Mundry</SurName>
+      <EmailAddress>mailto:marvin.mundry@uni-hamburg.de</EmailAddress>
+    </ContactPerson>
+    <ContactPerson contactType="support">
+      <GivenName>ServiceLine</GivenName>
+      <SurName>RRZ</SurName>
+      <EmailAddress>mailto:rrz.serviceline@uni-hamburg.de</EmailAddress>
+    </ContactPerson>
+    <ContactPerson contactType="other" remd:contactType="http://refeds.org/metadata/contactType/security">
+      <GivenName>Bernd</GivenName>
+      <SurName>Flickenschild</SurName>
+      <EmailAddress>mailto:informationssicherheit@uni-hamburg.de</EmailAddress>
+    </ContactPerson>
+  </EntityDescriptor>
