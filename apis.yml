@@ -279,6 +279,8 @@ apis:
   humanURL: https://www.fdr.uni-hamburg.de/
   baseURL: https://www.fdr.uni-hamburg.de/api
   tags:
+  - Community
+  tags_raw:
   - Communities
   properties:
   - type: OpenAPI

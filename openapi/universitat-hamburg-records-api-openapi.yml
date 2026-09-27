@@ -125,13 +125,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        message:
-          type: string
     Record:
       type: object
       description: Fields observed in live responses on this host.
@@ -197,6 +190,13 @@ components:
                   orcid:
                     type: string
                     description: ORCID iD of the creator, as published in live responses.
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
 x-provenance:
   generated: '2026-09-01'
   method: derived
