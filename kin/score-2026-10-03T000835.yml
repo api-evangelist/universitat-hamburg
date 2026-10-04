@@ -1,41 +1,39 @@
-# Kin Score artifact — universitat-hamburg — 2026-08-24T171257
+# Kin Score artifact — universitat-hamburg — 2026-10-03T000835
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: universitat-hamburg
-  schema_version: 0.13.0
-  scored_at: '2026-08-24'
-  run_ts: 2026-08-24T171257
-  composite: 20.8
-  band: emerging
+  schema_version: 0.23.0
+  scored_at: '2026-10-03'
+  run_ts: 2026-10-03T000835
+  composite: 32.0
+  band: thin
   facets:
-    discoverability: 59.3
-    contract_quality: 10.7
-    governance: 0.0
-    operational_transparency: 26.3
-    developer_ergonomics: 11.9
-    commercial_clarity: 28.9
+    discoverability: 57.1
+    contract_quality: 23.7
     contract_governance: 0.0
-    access_clarity: 28.9
+    operational_transparency: 21.6
+    developer_ergonomics: 35.7
+    access_clarity: 47.9
   agent_readiness:
-    score: 5.0
-    band: human-only
+    score: 25.2
+    band: agent-aware
     dimensions:
-      spec_presence: false
+      spec_presence: true
       agentic_access: false
-      reversibility_documented: false
+      reversibility_documented: na
       mcp_server: false
       auth_clarity: bearer
-      idempotency: false
+      idempotency: na
       error_semantics: false
-      openapi_examples: false
-      rate_limit_signal: documented
+      openapi_examples: documented
+      rate_limit_signal: verified
       event_surface_described: false
       agent_skills: false
       well_known_catalog: false
       consent_identity: false
       agent_card: false
-      dry_run_mode: false
+      dry_run_mode: na
       delegated_identity: false
       protected_resource_metadata: false
       dynamic_client_registration: false
@@ -44,5 +42,12 @@ kin_score:
     applies: true
     regime: Education & Research
     regime_id: education
-    score: 31.5
+    score: 24.5
     matched_via: tags
+  provenance:
+    conformance: first-party
+    contracts:
+      total: 4
+      derived: 4
+      coverage: 100.0
+      callable: 100.0

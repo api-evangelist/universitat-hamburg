@@ -1,35 +1,33 @@
-# Kin Score artifact — universitat-hamburg — 2026-09-01T063623
+# Kin Score artifact — universitat-hamburg — 2026-09-22T213221
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: universitat-hamburg
-  schema_version: 0.17.2
-  scored_at: '2026-09-01'
-  run_ts: 2026-09-01T063623
-  composite: 22.7
-  band: emerging
+  schema_version: 0.22.0
+  scored_at: '2026-09-22'
+  run_ts: 2026-09-22T213221
+  composite: 42.9
+  band: developing
   facets:
     discoverability: 59.3
-    contract_quality: 10.7
-    governance: 0.0
-    operational_transparency: 26.3
-    developer_ergonomics: 21.4
-    commercial_clarity: 28.9
+    contract_quality: 55.8
     contract_governance: 0.0
-    access_clarity: 28.9
+    operational_transparency: 23.7
+    developer_ergonomics: 35.7
+    access_clarity: 50.0
   agent_readiness:
-    score: 5.0
-    band: human-only
+    score: 21.8
+    band: agent-aware
     dimensions:
-      spec_presence: false
+      spec_presence: true
       agentic_access: false
       reversibility_documented: false
       mcp_server: false
       auth_clarity: bearer
       idempotency: false
       error_semantics: false
-      openapi_examples: false
-      rate_limit_signal: documented
+      openapi_examples: documented
+      rate_limit_signal: verified
       event_surface_described: false
       agent_skills: false
       well_known_catalog: false
@@ -44,5 +42,5 @@ kin_score:
     applies: true
     regime: Education & Research
     regime_id: education
-    score: 31.5
+    score: 46.3
     matched_via: tags
